@@ -19,7 +19,7 @@
   :name: _optional_labs
   :hidden:
 
-
+  lenovo/lenovo
 
 .. toctree::
   :maxdepth: 2
