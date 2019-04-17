@@ -2,6 +2,41 @@
 
 .. toctree::
   :maxdepth: 2
+  :caption: Discovery
+  :name: _discovery
+  :hidden:
+
+  discovery/servervirt/servervirt
+  discovery/databases/databases
+  discovery/vdi/vdi
+  discovery/fileservices/fileservices
+  discovery/bigdata/bigdata
+  discovery/uc/uc
+  discovery/exchange/exchange
+  discovery/ntnx/ntnx
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Data Collection & Analysis
+  :name: _datacollection
+  :hidden:
+
+  datacollection/rvtools/rvtools
+  datacollection/rvtools-lab1/rvtools-lab1
+  datacollection/rvtools-lab1-answers/rvtools-lab1-answers
+  datacollection/liveoptics/liveoptics
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Sizer
+  :name: _sizer
+  :hidden:
+
+  sizer/overview/overview
+  sizer/intro-lab/intro-lab
+
+.. toctree::
+  :maxdepth: 2
   :caption: Exercises and Labs
   :name: _exercises_and_labs
   :hidden:
@@ -9,7 +44,7 @@
   what_is_sizer/what_is_sizer
   lab_intro_to_sizer/lab_intro_to_sizer
   rvtools/rvtools
-  live_optics/live_optics
+  .. live_optics/live_optics
   lab_automatic_sizing/lab_automatic_sizing
   lab_manual_sizing/lab_manual_sizing
 
