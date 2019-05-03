@@ -7,12 +7,6 @@
   :hidden:
 
   discovery/servervirt/servervirt
-  .. discovery/databases/databases
-  .. discovery/vdi/vdi
-  .. discovery/fileservices/fileservices
-  .. discovery/bigdata/bigdata
-  .. discovery/uc/uc
-  .. discovery/exchange/exchange
   discovery/ntnx/ntnx
 
 .. toctree::
@@ -22,15 +16,13 @@
   :hidden:
 
   rvtools/rvtools
-  .. datacollection/rvtools-lab1/rvtools-lab1
-  .. datacollection/rvtools-lab1-answers/rvtools-lab1-answers
-  .. datacollection/liveoptics/liveoptics
 
 .. toctree::
   :maxdepth: 2
   :caption: Sizer
   :name: _sizer
   :hidden:
+
   what_is_sizer_lenovo/what_is_sizer_lenovo
   sizer/overview/overview
   sizer/intro-lab/intro-lab
@@ -38,34 +30,12 @@
 .. toctree::
   :maxdepth: 2
   :caption: Lab
-  :name: _exercises_and_labs
+  :name: _lab
   :hidden:
 
-  datacollection/rvtools/rvtools
   datacollection/rvtools-lab1/rvtools-lab1
   datacollection/rvtools-lab1-answers/rvtools-lab1-answers
-  .. what_is_sizer/what_is_sizer
-  .. lab_intro_to_sizer/lab_intro_to_sizer
-  .. rvtools/rvtools
-  .. live_optics/live_optics
-  .. lab_automatic_sizing/lab_automatic_sizing
-  .. lab_manual_sizing/lab_manual_sizing
 
-.. toctree::
-  :maxdepth: 2
-  :caption: Optional Labs
-  :name: _optional_labs
-  :hidden:
-
-  .. lenovo/lenovo
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Appendix
-  :name: _appendix
-  :hidden:
-
-  .. appendix/live_optics_glossary
 
 .. _getting_started:
 
