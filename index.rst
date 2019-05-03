@@ -1,4 +1,4 @@
-.. title:: Nutanix Sizing Workshop
+.. title:: Nutanix Sizing Partner Workshop
 
 .. toctree::
   :maxdepth: 2
@@ -11,30 +11,22 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Data Collection & Analysis
+  :caption: Data Collection & Analysis Lab
   :name: _datacollection
   :hidden:
 
-  rvtools/rvtools
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Sizer
-  :name: _sizer
-  :hidden:
-
-  what_is_sizer_lenovo/what_is_sizer_lenovo
-  sizer/overview/overview
-  sizer/intro-lab/intro-lab
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Lab
-  :name: _lab
-  :hidden:
-
+  datacollection/rvtools/rvtools
   datacollection/rvtools-lab1/rvtools-lab1
   datacollection/rvtools-lab1-answers/rvtools-lab1-answers
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Sizer
+    :name: _sizer
+    :hidden:
+
+    what_is_sizer_lenovo/what_is_sizer_lenovo
+    sizer/intro-lab/intro-lab
 
 
 .. _getting_started:
@@ -49,8 +41,16 @@ What's New
 ++++++++++
 
 - Workshop updated for the following software versions:
+
   - Sizer 3.0
   - RV Tools Import
+
+Sizing Reference Workshop
++++++++++++++++++++++++++
+
+- For ongoing sizing reference and NCSE L1 and L2 prep, use this workshop.
+
+  - `Sizing Reference Workshop <https://nutanix.handsonworkshops.com/workshops/c1279d19-f6e4-4002-9dbe-b0f5a280b7ca/start/>`_
 
 
 Access Instructions

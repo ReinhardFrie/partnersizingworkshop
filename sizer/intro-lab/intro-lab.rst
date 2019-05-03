@@ -1,7 +1,7 @@
 .. _sizer-intro-lab:
 
 ---------------------------
-Lab - Sizer Intro/RAW Input
+Sizer Refresher
 ---------------------------
 
 Overview
