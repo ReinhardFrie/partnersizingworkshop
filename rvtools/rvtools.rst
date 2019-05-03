@@ -1,7 +1,7 @@
 .. _rvtools:
 
 -------------
-RV Tools
+Installing and Running RVTools
 -------------
 
 Overview
@@ -12,7 +12,7 @@ Instructions to use data collected with RVTools to size a Nutanix platform.
 What is RVTools
 +++++++++++++++
 
-RVTools is a windows .NET application which uses the VI SDK to display information about your virtual machines and ESX hosts. RVTools is able to list information about VMs, CPU, Memory, Disks, Partitions, Network, Floppy Drives, CD drives, Snapshots, VMware tools, Resource pools, Clusters, ESX hosts, HBAs, Nics, Switches, Ports, Distributed Switches, Distributed Ports, Service consoles, VM Kernels, Datastores, Multipath info and health checks.  
+RVTools is a windows .NET application which uses the VI SDK to display information about your virtual machines and ESX hosts. RVTools is able to list information about VMs, CPU, Memory, Disks, Partitions, Network, Floppy Drives, CD drives, Snapshots, VMware tools, Resource pools, Clusters, ESX hosts, HBAs, Nics, Switches, Ports, Distributed Switches, Distributed Ports, Service consoles, VM Kernels, Datastores, Multipath info and health checks.
 
 Download RVtools: http://www.robware.net/
 
@@ -84,7 +84,7 @@ In the Sizer, provide the average vCPU and RAM values:
 Get the storage used
 ....................
 
-In tabvPartition tab, add a column named Used Capacity after Free MB (F column). Add a formula to subtract Free MB (F) to Capacity MB (E). In the example below: =E2-F2 (Repeat that formula until the last line).
+In tabvPartition tab, add a column named Used Capacity after Free MB (F column). Add a formula to subtract Free MB (F) to Capacity MB (E). In the example below:=E2-F2 (Repeat that formula until the last line).
 
 .. figure:: images/rvtools_12.png
 

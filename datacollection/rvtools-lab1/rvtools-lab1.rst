@@ -1,5 +1,5 @@
 ----------------------------
-Lab - Analyzing RVTools Data
+Lab - Cluster Information Table
 ----------------------------
 
 Download the :download:`example RVTools output file <SizingWorkshop-RVTools.xlsx>` to use for this lab exercise.
