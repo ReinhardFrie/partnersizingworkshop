@@ -1,7 +1,7 @@
 .. _rvtools:
 
 -------
-Analyzing RVTools Data
+Lab - Analyzing RVTools Data
 -------
 
 Overview
@@ -43,11 +43,11 @@ Select a directory and click **Save**.
 Basic Analysis Tips
 -------------------
 
-A standard RVTools export is comprised of many tabs, including vInfo, vCPU, vMemory, vDisks, vPartitions, vHosts, vNetwork, vCD, vFloppy, etc. As a matter of preference, non-essential tabs can be hidden or deleted.
+A standard RVTools export is comprised of many tabs, including vInfo, vCPU, vMemory, vDisks, vPartitions, vHosts, vNetwork, vCD, vFloppy, etc. All have interesting information but not all are useful in sizing.  You can hide or just ignore tabs that aren’t needed.
 
 Similarly, each tab contains many non-essential columns that can be hidden or deleted. The remainder of this guide will focus on the essential data, with additional data already removed.
 
-Separate multiple virtual clusters into separate workloads for sizing purposes. Separate clusters may continue to be separate environments running on Nutanix. Even in a scenario where multiple clusters are being consolidated, gathering sizing information separately will allow you to right-size for things like vCPU:pCore ratio.
+Exports often contain multiple clusters and you will want address each cluster as an independent workload or collection of workloads. This holds true even if you are consolidating multiple clusters into a single Nutanix cluster. This will ensure you right-size for things like vCPU:pCpu core ratio.
 
 Add range data on each tab into a table to easily sort and filter. Select the desired tab in Excel and click **Insert > Table**. Ensure **My table has headers** is selected and click **OK**.
 
@@ -57,19 +57,23 @@ The information most relevant to sizing can be extracted from three tabs:
 
 - vInfo
 - vPartition
+- vDisk
 - vHost
 
-removing/hiding unnecessary columns (config status, DNS name, heartbeat, etc.)
-pay attention to description and annotation fields - helpful in identifying MC databases
-add to table
-separate clusters
-MB is actually MiB - so divide by 1024
-divide up into different workloads based on DR requirements
+You can remove/hide unnecessary columns like config status, DNS name, heartbeat, etc. to make it easier to navigate.
+Make sure to pay attention to the description and annotation fields. These columns can be helpful in identifying mission critical systems and specific applications.
 
-RVTools - vInfo, vPartition, and vHost tabs - call our WHY we would use vPartion (thick vs. thin provisioned disks) and vHost (data point of CPU consolidation)
-	- recognizing thick vdisks (comparing provisioned MB and in User MB on vInfo tab)
-	- anecdotal or additional information on CPU utilization to achieve greater vCPU;pCore ratios
-- ignoring powered off or template VMs when sizing compute
+**Additional sizing items to be aware of (covered in detail following):**
+
+- Separate out clusters.
+- MB is actually MiB. MiB conversions to GiB/TiB - covered in detail in lab, but remember that when converting you are dividing or multiplying by 1024, not 100. In smaller configs, this is usually inconsequential, but in builds with large memory or storage requirements this can significantly change the results of a sizing.
+- Divide up into different workloads based on DR requirements.
+- Account for templates or powered off VMs. (Verify with customer if you should consider those VMs in the sizing)
+- Check to see if the customers existing VMs are thick or thinly provisioned. If thick, are they going to stay that way or change? (With Nutanix, we thin provision by default)
+- RVTools is run at a single point in time, not over a period in time. (Keep that in mind as it may not have been done during Peak performance)
+- Replication and snapshot calculations are done on a workload basis within sizer to account for specific data protection requirements.
+- Add memory consumed by VMs to your total storage requirements to account for things like vSwap.
+- Verify the customers existing environment is already configured for N+1 host failure. (If not, make sure to put into consideration in your sizing)
 
 vInfo
 -----
@@ -124,24 +128,24 @@ Select the **Memory** column to determine the **Sum** of all RAM assigned to VMs
 
 .. note::
 
-	Despite vCenter and RVTools displaying values labeled MB, GB, etc., they are actually Base 2 MiB, GiB, etc. **To properly convert between units, multiple or divide by 1024.**
+RVTools labels its columns as MB (base 10) when in reality its MiB (base2).  Sizer asks for it's numbers in base 2, so no conversion is necessary unless you want to go between MiB, GiB, and TiB.
 
 **Total Memory** - 8812468 MiB / 1024 = 8606 GiB
 
-**Provisioned MB** represents the total storage space, in MiB, committed to a virtual machine across all datastores. **In Use MB** represents storage in use, in MiBs, used by this virtual machine on all datastores. However this **In Use** value isn't typically useful for sizing as many environments utilize Thick Provisioned virtual disks, meaning all provisioned space is allocated up front.
+**Provisioned MB** represents the total storage space, in MiB, committed to a virtual machine across all datastores. **In Use MB** represents storage in use, in MiBs, used by this virtual machine on all datastores. **In Use MB** is the most conservative way to estimate storage requirements in sizer, It is a good reference point to start with, prior to looking deeper at actual consumed storage within the **vPartition** Tab.
 
 .. figure:: images/9.png
 
-Use of Thick Provisioned virtual disks can quickly be determined via comparison of the **Provisioned MB** and **In Use MB** sums, similar or identical values indicate the use of Thick Provisioned disks. The **vDisk** tab also has a **Thin** column which provides a True/False value for each virtual disk.
+Use of Thick Provisioned virtual disks can quickly be determined via comparison of the **Provisioned MB** and **In Use MB** sums, similar or identical values indicate the use of Thick Provisioned disks. The **vDisk** tab also has a **Thin** column which provides a True/False value for each virtual disk. This is an important distinction to make and an important conversation to have with the customer.  Nutanix thin provisions by default, however if vSphere thick provisions,  Nutanix will honor that reservation, consuming more storage than is most likely necessary. If your customer is going to stay thick provisioned, then **In Use MB** is the proper storage number to use.
 
 .. note::
 
-	It is still worth noting the provisioned storage in an environment. Even though we typically size based on storage actually being utilized, the prospect we have additional factors impacting the available capacity required for a proposed solution.
+	It is still worth noting the provisioned storage in an environment. Even though we typically size based on storage actually being utilized, the prospect may have additional factors impacting the available capacity required for a proposed solution.
 
 vPartition
 ----------
 
-**vPartition** provides in-guest storage utilization data provided by VMware Tools.
+**vPartition** provides in-guest storage utilization data provided by VMware Tools. This shows the impact of thin provisioning. Consumed MB is the space that the VM believes it has written to disk.  This is where knowing if a VM is thick or thin is important. If a customer is using thin already then this number is accurate to size from,  however if they are thick then Provisioned MB is the correct number.  You can often significantly reduce your storage requirements just by exposing to a customer that they are thick when they could be thin, however they must agree to convert thick to thin to take advantage.
 
 .. note::
 
@@ -161,7 +165,7 @@ Select the **Consumed MB** column to determine the **Sum** of all storage curren
 
 **In-Guest Consumed Storage** - 77341279 MiB / 1024 / 1024 = **73.8 TiB**
 
-It is also important to factor in the storage requirement for swap files used for memory oversubscription. This additional amount of capacity should equal the amount of memory provisioned for VM workloads.
+A final, and often forgotten, step is to factor in the storage requirement for swap files used for memory oversubscription. This additional amount of capacity should be equal to the amount of memory provisioned for VM workloads.
 
 **Total Workload Storage** - 73.8TiB + (8606GiB / 1024) = **82.2TiB**
 
@@ -178,11 +182,13 @@ Next, in the **Cluster** column, select the **Filter** icon and select the desir
 
 .. note::
 
-	**vHost** provides **CPU Usage %** and **Memory Usage %** for each host. This data is collected at the point in time that RVTools was run, and is in no way a historical representation of utilization. It should therefore not factor into sizing.
+	In addition to the tabs we will evaluate, **vHost** provides **CPU Usage %** and **Memory Usage %** for each host. This data is collected at the point in time that RVTools was run, and is in no way a historical representation of utilization. It should therefore not factor into sizing.
 
 	If a customer can provide additional anecdotal (peak CPU utilization doesn't exceed X%) or historical performance monitoring data, these can be factored in.
 
 	Memory utilization is less relevant, as we size based on the amount of RAM provisioned to VMs with the assumption that memory is not being overcomitted.
+
+	We typically size for the total potential CPU and Memory allocated to VMs.
 
 Select the **# Cores** column to determine the **Sum** of all physical CPU cores (**pCores**) in the cluster.
 
@@ -192,7 +198,9 @@ Select the **# Cores** column to determine the **Sum** of all physical CPU cores
 
 .. note::
 
-	Assuming the existing cluster is sized for N+1 availability, you may want to subtract 1 host worth of pCores from the **Total pCores** value. In this example, the total number of cores required to run the workload would be 336 Cores, rather than 352 Cores (each host has a total of 16 cores). This will have little impact for larger cluster sizes, but can make a dramatic difference in the vCPU:pCore ratio for clusters with a smaller number of hosts.
+	You will need to decide if you want to make the assumption that the cluster (physical hosts) you are gathering information from is already configured for N+1 redundancy or not. Sizer will automatically size for N+1 and report on your redundancy level. If the cluster you have gathered the information from is already N+1, you will oversize, and you may want to subtract 1 host worth of pCores from the **Total pCores** value.
+
+	In this example, the total number of cores required to run the workload would be 336 Cores, rather than 352 Cores (each host has a total of 16 cores). This will have little impact for larger cluster sizes, but can make a dramatic difference in the vCPU:pCore ratio for clusters with a smaller number of hosts.
 
 To calculate **vCPU:pCore Ratio**, divide the **Total vCPUs** by the **Total pCores**.
 

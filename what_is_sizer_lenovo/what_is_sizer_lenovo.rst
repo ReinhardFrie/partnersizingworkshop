@@ -125,3 +125,13 @@ The following are some additional things you will want to ask for when doing a E
 - External devices – iphones, activesync, blackberry etc.
 - Utilize the exchange role requirements calculator.
 - Utilize the Processor Query tool to determine megacycle requirements.
+
+FAQ
+---
+
+Refer to `Sizer Quick Help <https://services.nutanix.com/#/faqs>`_.
+
+Contact
+-------
+
+To provide Sizer feedback, e-mail sizer@nutanix.com.

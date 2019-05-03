@@ -1,4 +1,4 @@
-.. title:: Nutanix Sizing Workshop
+.. title:: Nutanix Sizing Partner Workshop
 
 .. toctree::
   :maxdepth: 2
@@ -7,62 +7,34 @@
   :hidden:
 
   discovery/servervirt/servervirt
-  discovery/databases/databases
-  discovery/vdi/vdi
-  discovery/fileservices/fileservices
-  discovery/bigdata/bigdata
-  discovery/uc/uc
-  discovery/exchange/exchange
   discovery/ntnx/ntnx
 
 .. toctree::
   :maxdepth: 2
-  :caption: Data Collection & Analysis
+  :caption: Data Collection & Analysis Lab
   :name: _datacollection
   :hidden:
 
-  datacollection/rvtools/rvtools
   datacollection/rvtools-lab1/rvtools-lab1
+  datacollection/rvtools/rvtools
   datacollection/rvtools-lab1-answers/rvtools-lab1-answers
-  datacollection/liveoptics/liveoptics
 
 .. toctree::
-  :maxdepth: 2
-  :caption: Sizer
-  :name: _sizer
-  :hidden:
+    :maxdepth: 2
+    :caption: Sizer
+    :name: _sizer
+    :hidden:
 
-  sizer/overview/overview
-  sizer/intro-lab/intro-lab
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Exercises and Labs
-  :name: _exercises_and_labs
-  :hidden:
-
-  what_is_sizer/what_is_sizer
-  lab_intro_to_sizer/lab_intro_to_sizer
-  rvtools/rvtools
-  .. live_optics/live_optics
-  lab_automatic_sizing/lab_automatic_sizing
-  lab_manual_sizing/lab_manual_sizing
+    what_is_sizer_lenovo/what_is_sizer_lenovo
+    sizer/intro-lab/intro-lab
 
 .. toctree::
-  :maxdepth: 2
-  :caption: Optional Labs
-  :name: _optional_labs
-  :hidden:
+    :maxdepth: 2
+    :caption: Appendix
+    :name: _appendix
+    :hidden:
 
-  lenovo/lenovo
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Appendix
-  :name: _appendix
-  :hidden:
-
-  appendix/live_optics_glossary
+    rvtools/rvtools 
 
 .. _getting_started:
 
@@ -70,24 +42,38 @@
 Getting Started
 ---------------
 
-Welcome to the Nutanix Sizing Workshop! This workbook accompanies an instructor-led session that introduces Nutanix technologies sizing guidelines and best practices. You will also be introduced to the Nutanix Sizer tool, and work through multiple sizing scenarios.
+Welcome to the Nutanix Partner Sizing Workshop sponsored by Lenovo! This workbook accompanies an instructor-led session that introduces Nutanix technologies sizing guidelines and best practices. You will also be introduced to the Nutanix Sizer tool, and work through multiple sizing scenarios.
 
 What's New
 ++++++++++
 
 - Workshop updated for the following software versions:
+
   - Sizer 3.0
   - RV Tools Import
+
+Sizing Reference Workshop
++++++++++++++++++++++++++
+
+- For ongoing sizing reference and NCSE L1 and L2 prep, use this workshop.
+
+  - `Sizing Reference Workshop <https://nutanix.handsonworkshops.com/workshops/c1279d19-f6e4-4002-9dbe-b0f5a280b7ca/start/>`_
 
 
 Access Instructions
 +++++++++++++++++++
 
-The Nutanix Sizer tool can be accessed a number of different ways:
+The Nutanix Sizer tool can be accessed a number of different ways. But we have detailed how, for this lab, below:
 
 Sizer Access
 .................
 
-**Nutanix Employees** - http://sizer.nutanix.com or http://my.nutanix.com, then choose: **Sizer**
-
 **Partners** - http://sizer.nutanix.com, then choose **My Nutanix Login**
+
+For the Lab today, you will all be using a generic login for sizer that will be entered as your **My Nutanix Login**. Typically, this would be your partner email address.
+
+Username: hx_channel_partner@sizer.com
+
+Password: @Sizer99
+
+When creating your Scenarios during this lab, please make sure to name it First initial + Last name - LenovoLab. e.g. BBauling-LenovoLab
