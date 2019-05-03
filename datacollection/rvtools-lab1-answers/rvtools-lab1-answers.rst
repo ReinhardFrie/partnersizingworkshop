@@ -7,6 +7,8 @@ Answers - Analyzing RVTools Data
 Summary
 -------
 
+**For Partner XChange Answers - will be posted towards end of lab**
+
 Download the :download:`analyzed RVTools output file <SizingWorkshop-RVTools-Answers.xlsx>`.
 
 ============ =========== ================ ============ =============
@@ -20,7 +22,7 @@ DMZ          136         5.3              448 GiB      4.1 TiB
 Notes
 .....
 
-As each cluster was smaller (< 10 hosts) and assumed to have N+1 availability, the total number of physical cores was calculated as:
+We assumed that the analyzed clusters were already configured with N+1 availability, so we accounted for one less host worth of cores when calculating the total number of physical cores. We used this equation:
 
 **(Number of Hosts - 1) * Average Total pCores per Host**
 

@@ -15,8 +15,8 @@
   :name: _datacollection
   :hidden:
 
-  datacollection/rvtools/rvtools
   datacollection/rvtools-lab1/rvtools-lab1
+  datacollection/rvtools/rvtools
   datacollection/rvtools-lab1-answers/rvtools-lab1-answers
 
 .. toctree::
@@ -28,6 +28,13 @@
     what_is_sizer_lenovo/what_is_sizer_lenovo
     sizer/intro-lab/intro-lab
 
+.. toctree::
+    :maxdepth: 2
+    :caption: Appendix
+    :name: _appendix
+    :hidden:
+
+    rvtools/rvtools 
 
 .. _getting_started:
 
